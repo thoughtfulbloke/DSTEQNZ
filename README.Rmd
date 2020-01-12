@@ -8,95 +8,12 @@ output:
   pdf_document: default
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(eval = TRUE)
+```
 
-
-
-
-More earthquakes are detected at night. This was observed in the early 1970s when the cause was attributed to human activity during the day masking earthquake detection for earthquakes under 4 magnitude [^1]. However, earthquake detection capabilities have increased in the last fifty years, yet there remains an imbalance in the number of earthquakes detected during the day and at night.
-
-[^1]: Shimshoni.M. Response to Comments by Davies, by Flinn et al. and by Knopoff et al.on the Evidence for Higher Seismic Activity During the Night. Geophysical Journal of the Royal Astronomical Society (1972) 28(3):315. In response to:
-      Flinn EA, Blandford.RR, Mack H. Evidence for Higher Seismic Activity During Night. Geophysical Journal of the Royal Astronomical Society 1972;28(3):307-309. Knopoff L, Gardner JK. Higher seismic activity during local night on the raw worldwide earthquake catalogue. Geophysical Journal of the Royal Astronomical Society 1972;283:311-313. In response to:
-      Shimshoni.M. Evidence for Higher Seismic Activity During Night. Geophysical Journal of the Royal Astronomical Society 1971;24(1):97-99. 
-
-
-
-
-
-To explore this argument in detail I am using the ten years of New Zealand earthquakes and likely earthquakes from the start of December 2009 to the end of November 2019 (n = 230,190) from the Geonet Earthquake Catalog[^2]. Of the 230,190 events, 127,364 (55.3%) were detected when the sun was below the horizon. This can also be described as 24% more earthquakes detected at night, or 19% fewer earthquakes during the day. 
-
-[^2]: https://quakesearch.geonet.org.nz
-
-This difference is so far beyond that seen as a result of random chance that it must be structural. Either a structural difference in the occurrence of earthquakes and/or the detection of earthquakes.
-
-## Failure to Detect
-
-Failure to detect an earthquake can be described as the earthquake signal being too weak to be unambiguous to the sensor. Implicit in this is a strength of earthquake that is no longer undetectable, so above which point there is full confidence in the data.
-
-New Zealand earthquakes, in common with other countries [^3], has more earthquakes detected on Sundays, a mild indicator of cultural biasing as Sundays are the quietest day for human activity.
-
-[^3]: Atef AH, Liu KH, Gao SS. Apparent Weekly and Daily Earthquake Periodicities in the Western United States. Bulletin of the Seismological Society of America 2009;99(4):2273-2279.
-
-
-Table: Table 1: Day of the week frequency of earthquakes
-
-Day    Count   Percentage
-----  ------  -----------
-Sun    33577        14.59
-Mon    33340        14.48
-Tue    33411        14.51
-Wed    32331        14.05
-Thu    31672        13.76
-Fri    32395        14.07
-Sat    33462        14.54
-
-Based on a chi-squared test statistic (X-squared = 100.77, DF 6) the week distribution should be considered non-randomly imbalanced.
-
-
-
-
-To find threshold points above which no further cultural influence can be detected, for each earthquake in the catalog I count the number of earthquake occurrences on each weekday of every earthquake that magnitude or higher. Sunday ceases to be the most common day for earthquakes at magnitude 1.534, when earthquakes on Tuesday become equally as common. At magnitude 2.020, Sunday is the median weekday for earthquakes of that magnitude or higher, with three days more common and three days less common.
-
-
-![Figure 1: Proportion of nighttime New Zealand earthquakes by magnitude](README_files/figure-html/figure1-1.png)
-
-119,629 earthquake detections occur between magnitude 2.02 and 3, a range too powerful for culture interference, in the form of weekday biases, but still showing raised rates of nighttime earthquakes.
-
-84,142 detections were below 2.02, a level showing raised nighttime earthquakes and potential bias of unknown strength from cultural masking of earthquake events. 
-
-The rise in nighttime occurrences in high magnitude earthquakes is not relevant to this analysis, as above magnitude 5 form a very small (320) part of the catalog which is closely interdependent since large earthquakes can be triggered as aftershocks to other large earthquakes. Also, though outside the scope of this particular analysis, more earthquakes at night among low magnitude earthquakes is a common feature across different countries catalogs, but not high magnitude, which also suggests it is an artefact of sample size.
-
-## Cultural night vs Natural night
-
-In developed countries, night in a cultural sense is not the same as night in a natural sense. In New Zealand, natural daylight lengths vary steadily through the year from approximately fifteen hours and ten minutes at the summer solstice to approximately nine hours and eleven minutes at winter solstice[^4]. Conversely, clock-based human activity follows the same time pattern each week, regardless of the length of the natural day.
-
-[^4]: Day lengths for Wellington, New Zealand.
-
-As all of New Zealand observes daylight savings time, shifting their daily routines by one hour twice a year, this creates a sudden disjuncture in cultural activities of humans relative to natural time, which should be reflected as a sudden disjuncture in earthquake detection if earthquakes are being masked by human activity. This shift should be visible when viewing New Zealand earthquake from a UTC time perspective, as a shift in pattern to one hour earlier while daylight savings is on compared to when daylight savings is off. The raised night period should be of the same length of time pre and post daylight savings, as people's activities relative to the clock have not changed, only the time they take place.
-
-If more earthquakes at night is a natural process, the rise of earthquakes should be spread across a wider period of long winter nights (no daylight savings) compared to the shorter nights of summer (daylight savings). The daylight savings period should be symmetrical with respect to the centre of the night of the non-daylight savings period.
-
-If more earthquakes at night is neither cultural masking nor a natural product of night length, then there should be no change in the distribution of earthquakes through the UTC period.
-
-
-
-
-
-![Figure 2: Earthquake distribution between 49 days of daylight savings starting and ending magnitude under 4. n=117803](README_files/figure-html/fig2_distribution_graphs-1.png)
-
-
-By eye, natural processes are contributing to the change more than cultural, as the post daylight savings start of the nightly rise is after the pre daylight savings time. A specific level of for the cultural masking can be estimated by calculating the number of minutes the pattern is asymmetric when daylight savings is on, as the asymmetricism is a property of human activity. This is calculated by moving the daylight savings distribution later in time until the difference between the curves for the start and end of night is symmetric.
-
-![Figure 3: Asymmetricism and displacement of start and end of night](README_files/figure-html/fig3-1.png)
-
-As the data is sixteen minutes displaced from being symmetric, and if cultural masking was the only cause the data would be 60 minutes displaced, then all earthquakes under magnitude 4, around three quarters of the changes in the start and end times of the nighttime rise is insensitive to cultural change of masking times.
-
-If the rate at which cultural changes affects the detection of the start and end of night generalises, then we can say of the ~20% few earthquakes detected during the day, around 5% are doing to failing to detect a low strength daytime earthquake when an equivalent nighttime one is detected, and about 15% is due to fewer earthquakes occurring during the day.
-
-
-
-
-
-```r
+```{r libraries, warning=FALSE, message=FALSE}
 # R libraries used in the analysis
 library(vroom)
 library(knitr)
@@ -106,6 +23,15 @@ library(lubridate)
 library(suncalc)
 library(tidyr)
 library(ggplot2)
+```
+
+More earthquakes are detected at night. This was observed in the early 1970s when the cause was attributed to human activity during the day masking earthquake detection for earthquakes under 4 magnitude [^1]. However, earthquake detection capabilities have increased in the last fifty years, yet there remains an imbalance in the number of earthquakes detected during the day and at night.
+
+[^1]: Shimshoni.M. Response to Comments by Davies, by Flinn et al. and by Knopoff et al.on the Evidence for Higher Seismic Activity During the Night. Geophysical Journal of the Royal Astronomical Society (1972) 28(3):315. In response to:
+      Flinn EA, Blandford.RR, Mack H. Evidence for Higher Seismic Activity During Night. Geophysical Journal of the Royal Astronomical Society 1972;28(3):307-309. Knopoff L, Gardner JK. Higher seismic activity during local night on the raw worldwide earthquake catalogue. Geophysical Journal of the Royal Astronomical Society 1972;283:311-313. In response to:
+      Shimshoni.M. Evidence for Higher Seismic Activity During Night. Geophysical Journal of the Royal Astronomical Society 1971;24(1):97-99. 
+
+```{r download_if_needed}
 # create folder for storing data in (as a sibling directory to the one this is in)
 if(!dir.exists("../nzdata")){
   dir.create("../nzdata")
@@ -133,6 +59,9 @@ for(i in 1:length(data_URLs)){
     download.file(url=data_URLs[i], destfile=outcome,
                   method = "libcurl", mode="w")}
   }
+```
+
+```{r read_and_prep_data, cache=TRUE}
 nzfiles <- paste0("../nzdata/eq_events/", list.files("../nzdata/eq_events/"))
 nzdata <- bind_rows(lapply(
   nzfiles,
@@ -197,11 +126,34 @@ withnight <- keyeq %>%
 
 rm(list=setdiff(ls(), "withnight"))
 
+```
+
+To explore this argument in detail I am using the ten years of New Zealand earthquakes and likely earthquakes from the start of December 2009 to the end of November 2019 (n = 230,190) from the Geonet Earthquake Catalog[^2]. Of the 230,190 events, 127,364 (55.3%) were detected when the sun was below the horizon. This can also be described as 24% more earthquakes detected at night, or 19% fewer earthquakes during the day. 
+
+[^2]: https://quakesearch.geonet.org.nz
+
+This difference is so far beyond that seen as a result of random chance that it must be structural. Either a structural difference in the occurrence of earthquakes and/or the detection of earthquakes.
+
+## Failure to Detect
+
+Failure to detect an earthquake can be described as the earthquake signal being too weak to be unambiguous to the sensor. Implicit in this is a strength of earthquake that is no longer undetectable, so above which point there is full confidence in the data.
+
+New Zealand earthquakes, in common with other countries [^3], has more earthquakes detected on Sundays, a mild indicator of cultural biasing as Sundays are the quietest day for human activity.
+
+[^3]: Atef AH, Liu KH, Gao SS. Apparent Weekly and Daily Earthquake Periodicities in the Western United States. Bulletin of the Seismological Society of America 2009;99(4):2273-2279.
+
+```{r table1}
 # days of the week table
 table1 <- withnight %>% count(nzDay) %>% mutate(percent = round(100* n/sum(n), 2))
 chi_result <- chisq.test(table1$n)
 kable(table1, caption = "Table 1: Day of the week frequency of earthquakes",
       col.names = c("Day", "Count", "Percentage"))
+```
+
+Based on a chi-squared test statistic (X-squared = 100.77, DF 6) the week distribution should be considered non-randomly imbalanced.
+
+
+```{r daycounts}
 day_counts <- withnight %>% arrange(desc(magnitude), desc(origintime)) %>% 
   mutate(remaining = 1:n(),
            Sun = cumsum(nzDay == "Sun"), 
@@ -221,6 +173,12 @@ becomes_median <- day_counts %>%
   gather(key = Weekday, value=Count, Sun:Sat) %>%
   arrange(rn, Count) %>% group_by(rn) %>% slice(4) %>% ungroup() %>%
   filter(Weekday == "Sun") %>% slice(1) %>% select(magnitude)
+```
+
+To find threshold points above which no further cultural influence can be detected, for each earthquake in the catalog I count the number of earthquake occurrences on each weekday of every earthquake that magnitude or higher. Sunday ceases to be the most common day for earthquakes at magnitude 1.534, when earthquakes on Tuesday become equally as common. At magnitude 2.020, Sunday is the median weekday for earthquakes of that magnitude or higher, with three days more common and three days less common.
+
+
+```{r figure1, fig.cap="Figure 1: Proportion of nighttime New Zealand earthquakes by magnitude"}
 between2.02and3 <- sum(withnight$magnitude > 2.02 & withnight$magnitude < 3)
 below2.02 <- sum(withnight$magnitude <= 2.02)
 
@@ -248,6 +206,28 @@ withnight %>% arrange(magnitude, origintime) %>%
         axis.ticks = element_line(size=0.2, colour = "#00508F")
           )
 above5 <- sum(withnight$magnitude > 5)
+```
+
+119,629 earthquake detections occur between magnitude 2.02 and 3, a range too powerful for culture interference, in the form of weekday biases, but still showing raised rates of nighttime earthquakes.
+
+84,142 detections were below 2.02, a level showing raised nighttime earthquakes and potential bias of unknown strength from cultural masking of earthquake events. 
+
+The rise in nighttime occurrences in high magnitude earthquakes is not relevant to this analysis, as above magnitude 5 form a very small (320) part of the catalog which is closely interdependent since large earthquakes can be triggered as aftershocks to other large earthquakes. Also, though outside the scope of this particular analysis, more earthquakes at night among low magnitude earthquakes is a common feature across different countries catalogs, but not high magnitude, which also suggests it is an artefact of sample size.
+
+## Cultural night vs Natural night
+
+In developed countries, night in a cultural sense is not the same as night in a natural sense. In New Zealand, natural daylight lengths vary steadily through the year from approximately fifteen hours and ten minutes at the summer solstice to approximately nine hours and eleven minutes at winter solstice[^4]. Conversely, clock-based human activity follows the same time pattern each week, regardless of the length of the natural day.
+
+[^4]: Day lengths for Wellington, New Zealand.
+
+As all of New Zealand observes daylight savings time, shifting their daily routines by one hour twice a year, this creates a sudden disjuncture in cultural activities of humans relative to natural time, which should be reflected as a sudden disjuncture in earthquake detection if earthquakes are being masked by human activity. This shift should be visible when viewing New Zealand earthquake from a UTC time perspective, as a shift in pattern to one hour earlier while daylight savings is on compared to when daylight savings is off. The raised night period should be of the same length of time pre and post daylight savings, as people's activities relative to the clock have not changed, only the time they take place.
+
+If more earthquakes at night is a natural process, the rise of earthquakes should be spread across a wider period of long winter nights (no daylight savings) compared to the shorter nights of summer (daylight savings). The daylight savings period should be symmetrical with respect to the centre of the night of the non-daylight savings period.
+
+If more earthquakes at night is neither cultural masking nor a natural product of night length, then there should be no change in the distribution of earthquakes through the UTC period.
+
+
+```{r DST_calcs}
 localTZ = "Pacific/Auckland"
 days_interest = 49 
 # 49 is multiple of 7 closest to but larger than a 30 minute change in sunrise/set
@@ -332,6 +312,10 @@ dens_DSTon_nature <- densities$y[721:1440]
 # and if unaffected by neither human nor nature there would be no change
 dens_independent <- dens_DSToff 
 
+```
+
+
+```{r fig2_distribution_graphs, fig.cap="Figure 2: Earthquake distribution between 49 days of daylight savings starting and ending magnitude under 4. n=117803"}
 pal_personal <- c("#00508F", "#f9c013", "#1b1c20", "#ce2227", "#8f5800", "#22cec5", "#f9f913", "#8613f9")
 block1 <- data.frame(dens = dens_DSToff, step=1:720, case="Case 1: Independence",
                      DST="DST off", stringsAsFactors = FALSE)
@@ -372,6 +356,12 @@ bind_rows(block1, block2, block3, block4,
   )
 
 
+```
+
+
+By eye, natural processes are contributing to the change more than cultural, as the post daylight savings start of the nightly rise is after the pre daylight savings time. A specific level of for the cultural masking can be estimated by calculating the number of minutes the pattern is asymmetric when daylight savings is on, as the asymmetricism is a property of human activity. This is calculated by moving the daylight savings distribution later in time until the difference between the curves for the start and end of night is symmetric.
+
+```{r fig3, fig.cap="Figure 3: Asymmetricism and displacement of start and end of night"}
 # as each data point in the density calculations is 2 minutes
 # those are the step sizes
 offset_check <- function(x, DST_off, DST_on) {
@@ -398,4 +388,18 @@ data.frame(imbalances) %>% mutate(minutes=check_steps*2) %>%
         axis.line.x = element_line(size=0.1, colour = "#00508F"),
         axis.line.y = element_line(size=0.1, colour = "#00508F"),
         axis.ticks = element_line(size=0.2, colour = "#00508F"))
+
+```
+
+As the data is sixteen minutes displaced from being symmetric, and if cultural masking was the only cause the data would be 60 minutes displaced, then all earthquakes under magnitude 4, around three quarters of the changes in the start and end times of the nighttime rise is insensitive to cultural change of masking times.
+
+If the rate at which cultural changes affects the detection of the start and end of night generalises, then we can say of the ~20% few earthquakes detected during the day, around 5% are doing to failing to detect a low strength daytime earthquake when an equivalent nighttime one is detected, and about 15% is due to fewer earthquakes occurring during the day.
+
+
+```{r change_defaults, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+```{r ref.label=setdiff(knitr::all_labels(), c("setup", "change_defaults")), echo = T, eval = F}
 ```
